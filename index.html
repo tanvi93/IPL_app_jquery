@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Indian Premier League</title>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/handlebars/handlebars.min.js"></script>
+    <link href="./assests/css/style.css" rel="stylesheet">
+  	<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <img src="./assests/images/rajiv-gandhi_650_040615122938.jpg" id="bg" alt="">
+      <div class = "IPL-team">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Indian Premier League</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="single-product">
+    <div class="row" >
+    <script id="products-template" type="x-handlebars-template">​
+    {{#each this}}
+    <span class="col-sm-3 text-center"  data-index="{{id}}">
+      <a href="#myModal1"  data-toggle="modal" class="image"><img src="{{team_img_url}}" height="180" alt="{{team_name}}"/></a><br>
+      <div id ="name" ><a href="#" > {{team_name}} </a></div>
+    </span>
+    {{/each}}
+    </script> 
+    </div>
+</div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog " >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button href="" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="row" >
+        <script id="players-template" type="x-handlebars-template">​
+        <span id="refresh">
+        {{#each this}}
+        <div class="col-sm-3 text-center"  data-index="{{@index}}">
+          <img src="{{player_img_url}}" height="180" alt="{{player_name}}"/><br>
+          <div id ="name1" ><a href="#" > {{player_name}} </a></div>
+        </div>
+        {{/each}}
+        </span>
+        </script> 
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyATq-VhGNgxiIGxa9ZonRBQMzLK9JRbssE",
+        authDomain: "iplapp-e5ad8.firebaseapp.com",
+        databaseURL: "https://iplapp-e5ad8.firebaseio.com",
+        storageBucket: "iplapp-e5ad8.appspot.com",
+        messagingSenderId: "43814770916"
+      };
+      firebase.initializeApp(config);
+    </script>
+<script src="./assests/js/script.js"></script>
+  </body>
+</html>
