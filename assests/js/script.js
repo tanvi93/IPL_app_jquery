@@ -1,5 +1,4 @@
 var logo = [];
-var list;
 var ref = firebase.database().ref();
 
       ref.on("value", function(snapshot) {
@@ -14,7 +13,7 @@ var ref = firebase.database().ref();
 
 function generateAllIPLTeamHTML(data){
 
-   list = $('.IPL-team');
+  var list = $('.IPL-team');
 
   var theTemplateScript = $("#team-template").html();
   //Compile the template​
