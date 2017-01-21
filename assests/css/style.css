@@ -1,3 +1,4 @@
+/*for background image*/
 #bg {
   position: fixed;
   top: 0;
@@ -8,11 +9,72 @@
   min-height: 100%;
 }
 
+/*dropdown on team logo for team info*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
-@media (min-width: 768px) {
-  .modal-dialog {
-       width: 800px;
-       padding: 0;
-       margin:0;
-     }
+
+.dropdown-content {
+
+    display: none;
+    position: absolute;
+    background-color:hsla(240, 60%, 80%, 0.8);
+    min-width: 300px;
+    padding: 5px 5px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*flip for player details on img of player*/
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	height:220px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.8s;
+	transform-style: preserve-3d;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+}
+
+/* front pane, placed above back */
+.front {
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

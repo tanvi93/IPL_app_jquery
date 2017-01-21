@@ -1,11 +1,11 @@
 var logo = [];
+var list;
 var ref = firebase.database().ref();
 
       ref.on("value", function(snapshot) {
-      // snapshot.forEach(function(snapshot){
       logo = snapshot.val();
       console.log(logo);
-      // });
+
       generateAllIPLTeamHTML(logo);
       $(window).trigger('hashchange');
 }, function (error) {
@@ -14,26 +14,26 @@ var ref = firebase.database().ref();
 
 function generateAllIPLTeamHTML(data){
 
-  var list = $('.IPL-team');
+   list = $('.IPL-team');
 
-  var theTemplateScript = $("#products-template").html();
+  var theTemplateScript = $("#team-template").html();
   //Compile the template​
   var theTemplate = Handlebars.compile (theTemplateScript);
   // console.log(theTemplate(data));
+  $('.loader').fadeOut();
   list.append (theTemplate(data));
 
   list.find('span').on('click', function (e) {
-		e.preventDefault();
 
-		var productIndex = $(this).data('index');
-		window.location.hash = 'product/' + productIndex;
-    console.log(productIndex);
+		var teamIndex = $(this).data('index');
+		window.location.hash = 'team/' + teamIndex;
+    console.log(teamIndex);
 	})
 }
 
 function generateAllPlayersHTML(data){
 
-  var list1 = $('.modal-body');
+  var list1 = $('#players_details');
 
   var theTemplateScript = $("#players-template").html();
   //Compile the template​
@@ -47,13 +47,17 @@ $(window).on('hashchange', function(){
   render(decodeURI(window.location.hash));
 });
 
+// $(window).load(function() {
+// 		$(".loader").fadeOut(5000);
+// 	});
+
 function render(url) {
   // Get the keyword from the url.
   var temp = url.split('/')[0];
   var	map = {
-  '#product': function() {
+  '#team': function() {
     // Get the index of which product we want to show and call the appropriate function.
-    var index = url.split('#product/')[1];
+    var index = url.split('#team/')[1];
     $("#refresh").replaceWith("<span></span>");
      generateAllPlayersHTML(logo[index].team_players);
     //  console.log(index,);
@@ -68,3 +72,7 @@ console.log("error");
 }
 
 };
+
+$('.close').click(function (e) {
+  window.location.hash = '';
+});
